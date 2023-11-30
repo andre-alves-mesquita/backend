@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/user-login', [UserController::class, 'index']);
+Route::post('/user-login', [AuthController::class, 'login']);
+Route::get('/user-logout', [AuthController::class, 'logout'])->middleware('auth:api');
 Route::post('/user-register', [UserController::class, 'register']);
+Route::post('/upload', [UploadController::class, 'upload'])->middleware('auth:api');
